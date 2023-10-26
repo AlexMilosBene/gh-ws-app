@@ -14,14 +14,14 @@ jobs:
         with:
           registry-url: https://npm.pkg.github.com/
       - run: |
-          git config --global user.name "Daniel Bali"
-          git config --global user.email "daniel.bali@benestudio.co"
+          git config --global user.name "AlexMilosBene"
+          git config --global user.email "alex.milos@benestudio.co"
       - run: |
-          echo '@shummy1991:registry=https://npm.pkg.github.com' > .npmrc
+          echo '@AlexMilosBene:registry=https://npm.pkg.github.com' > .npmrc
           echo 'always-auth=true' >> .npmrc
           echo '//npm.pkg.github.com/:_authToken=${{ secrets.WORKSHOP_PAT}}' >> .npmrc
       - run: npm i
-      - run: npm i @shummy1991/package-demo@latest
+      - run: npm i @AlexMilosBene/gh-ws-package@latest
       - run: |
           git add .
           git commit -m "update dependencies"

@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Heading } from '@shummy1991/package-demo';
+import { Heading } from '@AlexMilosBene/gh-ws-package';
 
 function App() {
   return (
