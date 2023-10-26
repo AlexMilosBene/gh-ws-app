@@ -1,29 +1,28 @@
-name: Storybook
+name: Update Dependencies
 
 on:
   workflow_dispatch:
 
 jobs:
-  storybook:
+  update:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
+        with:
+          registry-url: https://npm.pkg.github.com/
       - run: |
           git config --global user.name "Daniel Bali"
           git config --global user.email "daniel.bali@benestudio.co"
       - run: |
-          git fetch
-          git checkout storybook
-          git merge main --allow-unrelated-histories --no-ff -X theirs
+          echo '@shummy1991:registry=https://npm.pkg.github.com' > .npmrc
+          echo 'always-auth=true' >> .npmrc
+          echo '//npm.pkg.github.com/:_authToken=${{ secrets.WORKSHOP_PAT}}' >> .npmrc
       - run: npm i
-      - run: npm run build-storybook
-      - run: |
-          rm -rf docs
-          mv storybook-static docs
+      - run: npm i @shummy1991/package-demo@latest
       - run: |
           git add .
-          git commit -m "storybook update"
+          git commit -m "update dependencies"
           git push
