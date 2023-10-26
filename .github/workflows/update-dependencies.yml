@@ -21,4 +21,8 @@ jobs:
           echo 'always-auth=true' >> .npmrc
           echo '//npm.pkg.github.com/:_authToken=${{ secrets.WORKSHOP_PAT}}' >> .npmrc
       - run: npm i
-
+      - run: npm i @AlexMilosBene/gh-ws-package@latest
+      - run: |
+          git add .
+          git commit -m "update dependencies"
+          git push
